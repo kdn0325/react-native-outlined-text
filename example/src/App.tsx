@@ -1,18 +1,34 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@kdn0325/react-native-outlined-text';
+import { StyleSheet, View } from 'react-native';
+import OutlinedText from '@kdn0325/react-native-outlined-text';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <OutlinedText
+        text={'Hello World'}
+        color={'#000'}
+        fontSize={50}
+        fontWeight={'500'}
+        outlineColor={'#fff'}
+        shadowLine={2}
+      />
+      <OutlinedText
+        text={'Hello World'}
+        color={'#fff'}
+        fontSize={50}
+        fontWeight={'500'}
+        outlineColor={'pink'}
+        shadowLine={2}
+      />
+      <OutlinedText
+        text={'Hello World'}
+        color={'green'}
+        fontSize={50}
+        fontWeight={'500'}
+        outlineColor={'blue'}
+        shadowLine={2}
+      />
     </View>
   );
 }
@@ -20,6 +36,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
