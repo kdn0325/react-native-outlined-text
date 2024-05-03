@@ -1,6 +1,6 @@
 {
   "name": "@kdn0325/react-native-outlined-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "If you use text contours in React-Native, you can easily build them with this library",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -101,7 +101,8 @@
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": true,
+      "publishArgs": ["--access", "public"]
     },
     "github": {
       "release": true
