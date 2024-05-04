@@ -16,7 +16,8 @@ react-native run-ios
 
 react-native run-android
 ```
-![Example]()
+![Example](https://github.com/kdn0325/react-native-outlined-text/assets/91298955/e87d52f3-9178-4a38-8c05-1fff55dbe056)
+
 
 ## Installation
 
