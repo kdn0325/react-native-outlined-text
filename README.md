@@ -1,5 +1,23 @@
 # React Native Stroke/Outline Text
 
+Want to use text stroke or text outline in React Native? This library is easy to create
+
+## Examples
+
+```
+cd example
+
+npm install @kdn0325/react-native-outlined-text
+# or
+yarn add @kdn0325/react-native-outlined-text
+
+
+react-native run-ios
+
+react-native run-android
+```
+![Example]()
+
 ## Installation
 
 ```bash
