@@ -1,20 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-type FontWeight =
-  | 'normal'
-  | 'bold'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | undefined;
-
-type TextAlign = 'auto' | 'left' | 'right' | 'center' | 'justify';
 
 interface OutlinedTextProps {
   text: string;
@@ -36,78 +21,27 @@ export default function OutlinedText({
   fontFamily,
   align = 'center',
 }: OutlinedTextProps) {
+  const textStyle = {
+    color,
+    textShadowRadius: shadowLine,
+    fontWeight: fontWeight,
+    fontSize: fontSize,
+    fontFamily: fontFamily,
+    textShadowColor: outlineColor,
+    textAlign: align,
+  };
+
+  const renderOutLineText = (style: object) => (
+    <Text style={[styles.paragraph, style]}>{text}</Text>
+  );
   return (
     <View>
-      <Text
-        style={[
-          styles.paragraph,
-          {
-            color,
-            textShadowRadius: shadowLine,
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            textShadowColor: outlineColor,
-            textAlign: align,
-          },
-        ]}
-      >
-        {text}
-      </Text>
-      <Text
-        style={[
-          styles.paragraph,
-          styles.abs,
-          {
-            textShadowOffset: { width: shadowLine, height: shadowLine },
-            color,
-            textShadowRadius: shadowLine,
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            textShadowColor: outlineColor,
-            textAlign: align,
-          },
-        ]}
-      >
-        {text}
-      </Text>
-      <Text
-        style={[
-          styles.paragraph,
-          styles.abs,
-          {
-            textShadowOffset: { width: shadowLine, height: shadowLine },
-            color,
-            textShadowRadius: shadowLine,
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            textShadowColor: outlineColor,
-            textAlign: align,
-          },
-        ]}
-      >
-        {text}
-      </Text>
-      <Text
-        style={[
-          styles.paragraph,
-          styles.abs,
-          {
-            textShadowOffset: { width: shadowLine, height: shadowLine },
-            color,
-            textShadowRadius: shadowLine,
-            fontWeight: fontWeight,
-            fontSize: fontSize,
-            fontFamily: fontFamily,
-            textShadowColor: outlineColor,
-            textAlign: align,
-          },
-        ]}
-      >
-        {text}
-      </Text>
+      {renderOutLineText(textStyle)}
+      {renderOutLineText({
+        ...textStyle,
+        ...styles.abs,
+        textShadowOffset: { width: shadowLine, height: shadowLine },
+      })}
     </View>
   );
 }
