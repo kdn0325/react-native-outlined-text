@@ -48,6 +48,7 @@ export default function OutlinedText({
 
 const styles = StyleSheet.create({
   paragraph: {
+    backgroundColor: 'transparent',
     textShadowOffset: {
       width: 1,
       height: 1,
