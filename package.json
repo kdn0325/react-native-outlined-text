@@ -1,6 +1,6 @@
 {
   "name": "@kdn0325/react-native-outlined-text",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Want to use text stroke or text outline in React Native? This library is easy to create",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -32,7 +32,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it"
+    "release": "release-it",
+    "prettier": "prettier --write \"**/*.{js,ts,tsx,json,md}\""
   },
   "keywords": [
     "react-native",
