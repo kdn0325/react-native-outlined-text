@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import type { TextStyle, StyleProp } from 'react-native';
 
 interface OutlinedTextProps {
   text: string;
@@ -10,6 +11,7 @@ interface OutlinedTextProps {
   fontSize?: number;
   fontFamily?: string;
   align?: TextAlign;
+  customStyle?: StyleProp<TextStyle>;
 }
 export default function OutlinedText({
   text,
@@ -20,6 +22,7 @@ export default function OutlinedText({
   fontSize = 14,
   fontFamily,
   align = 'center',
+  customStyle,
 }: OutlinedTextProps) {
   const textStyle = {
     color,
@@ -32,7 +35,7 @@ export default function OutlinedText({
   };
 
   const renderOutLineText = (style: object) => (
-    <Text style={[styles.paragraph, style]}>{text}</Text>
+    <Text style={[styles.paragraph, style, customStyle]}>{text}</Text>
   );
   return (
     <View>
