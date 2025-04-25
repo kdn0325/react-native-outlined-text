@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 The following table outlines the props available for the `StrokeText` component:
 
 | Prop           | Type   | Description                                                                                                                                                                                                                            |
-| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| -------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `text`         | string | The text content you want to display.                                                                                                                                                                                                  |
 | `shadowLine`   | number | The thickness of the stroke (outline) around the text. If this prop isn't provided, the default thickness will be used. (default: `1`)                                                                                                 |
 | `color`        | string | Color of the text, can use any valid color format. (default: `#fff`)                                                                                                                                                                   |
@@ -95,7 +95,7 @@ The following table outlines the props available for the `StrokeText` component:
 | `fontWeight`   | string | The thickness of the font. It accepts the following values: 'normal', 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900'. If this prop isn't provided, the default value 'normal' will be used. (default: `normal`) |
 | `fontSize`     | string | Size of the text font, defining how large the text will be. (default: `14`)                                                                                                                                                            |
 | `fontFamily`   | string | Font family for the text, should match available project fonts. (default: `system font`)                                                                                                                                               |
-| `align`        | string | Text alignment. It accepts the following values: 'auto', 'left', 'right', 'center', 'justify'. If this prop isn't provided, the default value 'center' will be used. (default: `center`)                                               |     |
+| `align`        | string | Text alignment. It accepts the following values: 'auto', 'left', 'right', 'center', 'justify'. If this prop isn't provided, the default value 'center' will be used. (default: `center`)                                               |
 
 ## Ellipsis
 
