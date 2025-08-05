@@ -7,10 +7,10 @@ interface OutlinedTextProps {
   shadowLine: number;
   color?: string;
   outlineColor?: string;
-  fontWeight?: FontWeight;
+  fontWeight?: TextStyle["fontWeight"];
   fontSize?: number;
   fontFamily?: string;
-  align?: TextAlign;
+  align?: TextStyle["alignSelf"];
   customStyle?: StyleProp<TextStyle>;
 }
 export default function OutlinedText({
