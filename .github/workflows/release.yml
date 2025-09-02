@@ -1,5 +1,9 @@
 name: Release
 
+permissions:
+  contents: write
+  packages: write
+
 on:
   push:
     branches:
@@ -21,14 +25,14 @@ jobs:
         with:
           node-version: 20
 
-      # 코어팩 활성화 및 설정
+      # Activate Corepack for Yarn Berry
       - name: Setup Corepack
         run: |
-          # 코어팩 활성화 (sudo 사용)
+          # Enable Corepack with sudo
           sudo corepack enable
-          # 패키지 매니저 준비
+          # Prepare package manager
           sudo corepack prepare yarn@3.6.4 --activate
-          # 확인
+          # Verify installation
           which yarn
           yarn --version
 
