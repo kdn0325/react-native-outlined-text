@@ -20,13 +20,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'yarn'
 
-      - name: Enable Corepack and prepare Yarn
+      # 코어팩 활성화 및 설정
+      - name: Setup Corepack
         run: |
-          corepack enable
-          corepack prepare yarn@3.6.4 --activate
-          yarn set version 3.6.4
+          # 코어팩 활성화 (sudo 사용)
+          sudo corepack enable
+          # 패키지 매니저 준비
+          sudo corepack prepare yarn@3.6.4 --activate
+          # 확인
           which yarn
           yarn --version
 
