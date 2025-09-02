@@ -1,18 +1,55 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import type { TextStyle, StyleProp } from 'react-native';
+import type { TextStyle as RNTextStyle, StyleProp } from 'react-native';
 
 interface OutlinedTextProps {
+  /**
+   * The text to be displayed with outline effect
+   */
   text: string;
-  shadowLine: number;
+  /**
+   * Width of the text shadow (outline)
+   * @default 1
+   */
+  shadowLine?: number;
+  /**
+   * Color of the text
+   * @default '#fff'
+   */
   color?: string;
+  /**
+   * Color of the outline
+   * @default '#000'
+   */
   outlineColor?: string;
-  fontWeight?: TextStyle['fontWeight'];
+  /**
+   * Font weight of the text
+   * @default '500'
+   */
+  fontWeight?: RNTextStyle['fontWeight'];
+  /**
+   * Font size of the text
+   * @default 14
+   */
   fontSize?: number;
+  /**
+   * Font family of the text
+   */
   fontFamily?: string;
-  align?: TextStyle['alignSelf'];
-  customStyle?: StyleProp<TextStyle>;
+  /**
+   * Text alignment
+   * @default 'center'
+   */
+  align?: RNTextStyle['textAlign'];
+  /**
+   * Additional custom styles for the text
+   */
+  customStyle?: StyleProp<RNTextStyle>;
 }
+
+/**
+ * OutlinedText component for displaying text with outline effect
+ */
 export default function OutlinedText({
   text,
   shadowLine = 1,
@@ -24,27 +61,36 @@ export default function OutlinedText({
   align = 'center',
   customStyle,
 }: OutlinedTextProps) {
-  const textStyle = {
-    color,
-    textShadowRadius: shadowLine,
-    fontWeight: fontWeight,
-    fontSize: fontSize,
-    fontFamily: fontFamily,
-    textShadowColor: outlineColor,
-    textAlign: align,
-  };
-
-  const renderOutLineText = (style: object) => (
-    <Text style={[styles.paragraph, style, customStyle]}>{text}</Text>
+  // Memoize the text style to prevent unnecessary re-renders
+  const textStyle = useMemo(
+    () => ({
+      color,
+      textShadowRadius: shadowLine,
+      fontWeight,
+      fontSize,
+      fontFamily,
+      textShadowColor: outlineColor,
+      textAlign: align,
+    }),
+    [color, shadowLine, fontWeight, fontSize, fontFamily, outlineColor, align]
   );
+
+  // Memoize the outline text style
+  const outlineTextStyle = useMemo(
+    () => ({
+      ...textStyle,
+      ...styles.abs,
+      textShadowOffset: { width: shadowLine, height: shadowLine },
+    }),
+    [textStyle, shadowLine]
+  );
+
   return (
     <View>
-      {renderOutLineText(textStyle)}
-      {renderOutLineText({
-        ...textStyle,
-        ...styles.abs,
-        textShadowOffset: { width: shadowLine, height: shadowLine },
-      })}
+      <Text style={[styles.paragraph, textStyle, customStyle]}>{text}</Text>
+      <Text style={[styles.paragraph, outlineTextStyle, customStyle]}>
+        {text}
+      </Text>
     </View>
   );
 }
