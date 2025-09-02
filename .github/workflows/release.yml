@@ -22,13 +22,11 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Enable Corepack and prepare Yarn
+      - name: Update package.json for CI
         run: |
-          corepack enable
-          corepack prepare yarn@3.6.4 --activate
-          yarn set version 3.6.4
-          which yarn
-          yarn --version
+          # Temporarily remove packageManager field for CI
+          sed -i 's/"packageManager": "yarn@3.6.4",//' package.json
+          cat package.json | grep -v packageManager
 
       - name: Install dependencies
         run: yarn install
