@@ -22,13 +22,16 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
-      - name: Enable Corepack
+      - name: Enable Corepack and prepare Yarn
         run: |
           corepack enable
+          corepack prepare yarn@3.6.4 --activate
+          yarn set version 3.6.4
+          which yarn
           yarn --version
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install
 
       - name: Setup Git
         run: |
