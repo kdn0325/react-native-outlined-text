@@ -12,73 +12,113 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          node-version: 20
+
+      # Activate Corepack for Yarn Berry
+      - name: Setup Corepack
+        run: |
+          # Enable Corepack with sudo
+          sudo corepack enable
+          # Prepare package manager
+          sudo corepack prepare yarn@3.6.4 --activate
+          # Verify installation
+          which yarn
+          yarn --version
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Lint files
-        run: npm run lint
+        run: yarn lint
 
       - name: Typecheck files
-        run: npm run typecheck
+        run: yarn typecheck
 
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          node-version: 20
+
+      # Activate Corepack for Yarn Berry
+      - name: Setup Corepack
+        run: |
+          # Enable Corepack with sudo
+          sudo corepack enable
+          # Prepare package manager
+          sudo corepack prepare yarn@3.6.4 --activate
+          # Verify installation
+          which yarn
+          yarn --version
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Run unit tests
-        run: npm test -- --maxWorkers=2 --coverage
+        run: yarn test -- --maxWorkers=2 --coverage
 
   build-library:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          node-version: 20
+
+      # Activate Corepack for Yarn Berry
+      - name: Setup Corepack
+        run: |
+          # Enable Corepack with sudo
+          sudo corepack enable
+          # Prepare package manager
+          sudo corepack prepare yarn@3.6.4 --activate
+          # Verify installation
+          which yarn
+          yarn --version
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Build package
-        run: npm run prepare
+        run: yarn prepare
 
   build-web:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
+          node-version: 20
+
+      # Activate Corepack for Yarn Berry
+      - name: Setup Corepack
+        run: |
+          # Enable Corepack with sudo
+          sudo corepack enable
+          # Prepare package manager
+          sudo corepack prepare yarn@3.6.4 --activate
+          # Verify installation
+          which yarn
+          yarn --version
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Build example for Web
-        run: npm run example expo export:web
+        run: yarn example expo export:web
