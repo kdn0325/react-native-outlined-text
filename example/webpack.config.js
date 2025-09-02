@@ -6,11 +6,21 @@ const root = path.resolve(__dirname, '..');
 const node_modules = path.join(__dirname, 'node_modules');
 
 module.exports = async function (env, argv) {
-  const config = await createExpoWebpackConfigAsync(env, argv);
+  const config = await createExpoWebpackConfigAsync(
+    {
+      ...env,
+      entry: path.resolve(__dirname, 'index.js'),
+    },
+    argv
+  );
 
   config.module.rules.push({
     test: /\.(js|jsx|ts|tsx)$/,
-    include: path.resolve(root, 'src'),
+    include: [
+      path.resolve(root, 'src'),
+      // Include parent project src for local development
+      path.resolve(root, 'src'),
+    ],
     use: 'babel-loader',
   });
 
@@ -19,6 +29,8 @@ module.exports = async function (env, argv) {
   Object.assign(config.resolve.alias, {
     ...resolver.extraNodeModules,
     'react-native-web': path.join(node_modules, 'react-native-web'),
+    // Add explicit alias for the local package
+    '@kdn0325/react-native-outlined-text': path.resolve(root),
   });
 
   return config;
