@@ -66,8 +66,16 @@ jobs:
           # Release without git operations (npm only)
           yarn release --ci --no-git.requireUpstream --no-git.commit --no-git.tag --no-git.push
 
-      - name: Create Git Tag
+      - name: Create Git Tag and GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION=$(node -p "require('./package.json').version")
           git tag "v${VERSION}"
           git push origin "v${VERSION}"
+
+          # Create GitHub Release
+          gh release create "v${VERSION}" \
+            --title "v${VERSION}" \
+            --generate-notes \
+            --verify-tag

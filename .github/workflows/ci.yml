@@ -120,5 +120,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Build library first
+        run: yarn prepare
+
       - name: Build example for Web
         run: yarn example expo export --platform web
