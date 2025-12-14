@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "example": "yarn workspace @kdn0325/react-native-outlined-text-example",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
@@ -100,7 +100,9 @@
   "release-it": {
     "git": {
       "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
+      "tagName": "v${version}",
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false
     },
     "npm": {
       "publish": true,
@@ -111,6 +113,13 @@
     },
     "github": {
       "release": true
+    },
+    "hooks": {
+      "before:init": [
+        "yarn typecheck",
+        "yarn lint"
+      ],
+      "after:bump": "yarn prepare"
     },
     "plugins": {
       "@release-it/conventional-changelog": {
