@@ -57,10 +57,17 @@ jobs:
           echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
           echo "always-auth=true" >> ~/.npmrc
 
-      - name: Create Release
+      - name: Create Release and Publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          yarn release --ci --no-git.requireUpstream
+          # Release without git operations (npm only)
+          yarn release --ci --no-git.requireUpstream --no-git.commit --no-git.tag --no-git.push
+
+      - name: Create Git Tag
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git tag "v${VERSION}"
+          git push origin "v${VERSION}"
