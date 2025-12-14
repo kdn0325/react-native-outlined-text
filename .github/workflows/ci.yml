@@ -121,4 +121,4 @@ jobs:
         run: yarn install
 
       - name: Build example for Web
-        run: yarn example expo export:web
+        run: yarn example expo export --platform web
