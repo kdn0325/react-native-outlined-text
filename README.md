@@ -41,7 +41,7 @@ export default function App() {
     <View style={styles.container}>
       <OutlinedText
         text={'Hello World'}
-        fontColor={'#000'}
+        color={'#000'}
         fontSize={50}
         fontWeight={'500'}
         outlineColor={'#fff'}
@@ -49,7 +49,7 @@ export default function App() {
       />
       <OutlinedText
         text={'Hello World'}
-        fontColor={'#fff'}
+        color={'#fff'}
         fontSize={50}
         fontWeight={'500'}
         outlineColor={'pink'}
@@ -57,7 +57,7 @@ export default function App() {
       />
       <OutlinedText
         text={'Hello World'}
-        fontColor={'green'}
+        color={'green'}
         fontSize={50}
         fontWeight={'500'}
         outlineColor={'blue'}
@@ -73,11 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });
 ```
@@ -97,16 +92,19 @@ The following table outlines the props available for the `StrokeText` component:
 | `fontFamily`   | string | Font family for the text, should match available project fonts. (default: `system font`)                                                                                                                                               |
 | `align`        | string | Text alignment. It accepts the following values: 'auto', 'left', 'right', 'center', 'justify'. If this prop isn't provided, the default value 'center' will be used. (default: `center`)                                               |
 
-## Ellipsis
+## Additional Styling
+
+You can pass custom styles using the `customStyle` prop:
 
 ```jsx
 <OutlinedText
   text={'Hello World'}
-  fontColor={'#fff'}
+  color={'#fff'}
   fontSize={50}
   fontWeight={'500'}
   outlineColor={'pink'}
-  line={2}
+  shadowLine={2}
+  customStyle={{ letterSpacing: 2 }}
 />
 ```
 
