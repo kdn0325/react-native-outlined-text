@@ -52,8 +52,10 @@ jobs:
 
       - name: Setup npm authentication
         run: |
+          # Create .npmrc with granular access token
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-          cat ~/.npmrc
+          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
 
       - name: Create Release
         env:
